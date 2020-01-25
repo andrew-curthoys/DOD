@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <form action="/form" method="get" >
+        <div class="container-fluid">
+            <div class="card text-center border-0">
+                <div class="card-body">
+                    <h5 class="card-title">{{ check_message }}</h5>
+                    <div class="row mt-4">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <image class="img-fluid" src= static/photos/{{ photo_id }}>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    <p class="card-text">"{{ quote }}"</p>
+                    <p class="card-subtext">Total correct: {{ total_correct }} &emsp; Percent correct: {{ percent_correct }}%</p>
+                    <p class="card-subtext" id="countdown"></p>
+                    <p class="card-subtext" id="new-quote"></p>
+                    <input type="submit" class="btn btn-danger" name="selection" id="selection" style="display: none">
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

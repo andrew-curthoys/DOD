@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+
+{% block main %}
+
+    <form action="/form" method="post" >
+         <div class="container-fluid">
+            <div class="card text-center border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Who said this?</h5>
+                    <p class="card-text border-0">"{{ quote }}"</p>
+                </div>
+            </div>
+                <table class="table">
+                    <tr>
+                        <div class="row">
+                            <td>
+                                <div class="img-container">
+                                    <input type="submit" class="btn img-fluid" name="selection" value="Dick" style="background-image: url(static/photos/dick-{{ photo_id }}.jpeg)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="img-container">
+                                    <input type="submit" class="btn img-fluid" name="selection" value="Don" style="background-image: url(static/photos/don-{{ photo_id }}.jpeg)">
+                                </div>
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <input type="text" name="quote_id" style="display: none" value={{ quote_id }}>
+        <input type="text" name="quote" style="display: none" value="{{ quote }}">
+        </div>
+    </form>
+
+{% endblock %}
