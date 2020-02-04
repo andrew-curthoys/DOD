@@ -158,5 +158,5 @@ def check_answer():
 
 
 if __name__ == "__main__":
-    application.debug = True
+    application.debug = False
     application.run()
