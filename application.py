@@ -1,7 +1,6 @@
 import os
 import random
 from math import floor
-from application import app as application
 
 import sqlite3
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
@@ -10,13 +9,13 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 
 # Configure application
-app = Flask(__name__)
+application = Flask(__name__)
 
 # Ensure templates are auto-reloaded
-app.config["TEMPLATES_AUTO_RELOAD"] = True
+application.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # Ensure responses aren't cached
-@app.after_request
+@application.after_request
 def  after_request(response):
         response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
         response.headers["Expires"] = 0
@@ -24,10 +23,10 @@ def  after_request(response):
         return response
 
 # Configure session to use filesystem (instead of signed cookies)
-app.config["SESSION_FILE_DIR"] = mkdtemp()
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+application.config["SESSION_FILE_DIR"] = mkdtemp()
+application.config["SESSION_PERMANENT"] = False
+application.config["SESSION_TYPE"] = "filesystem"
+Session(application)
 
 
 def get_quote():
@@ -75,7 +74,7 @@ def get_quote():
     return quote_data
 
 
-@app.route("/", methods=["GET"])
+@application.route("/", methods=["GET"])
 def index():
     # set variables to hold the total correct & total guesses variables
     session['total_correct'] = 0
@@ -84,7 +83,7 @@ def index():
     return redirect("/form")
 
 
-@app.route("/form", methods=["GET"])
+@application.route("/form", methods=["GET"])
 def get_form():
     quote_data = get_quote()
 
@@ -94,7 +93,7 @@ def get_form():
 
     return render_template("form.html", quote=quote, quote_id=quote_id, photo_id=photo_id)
 
-@app.route("/form", methods=["POST"])
+@application.route("/form", methods=["POST"])
 def check_answer():
     if request.form.get("selection") == "refresh":
         return redirect("/form")
@@ -159,5 +158,5 @@ def check_answer():
 
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run()
+    application.debug = True
+    application.run()
