@@ -5,13 +5,13 @@ import sqlite3
 from datetime import datetime
 
 
-# auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-# auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-# api = tweepy.API(auth)
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+api = tweepy.API(auth)
 
 # create a list of quote ids then a randomly shuffled list
 # of quote ids to "hash" the day of the year to a random id
-random.seed(3)
+random.seed(7)
 quote_ids = list(range(1, 95))
 quote_id_hash = random.sample(quote_ids, len(quote_ids))
 
@@ -40,4 +40,4 @@ quote = quote.fetchone()
 quote = quote[0]
 conn.close()
 
-print(quote)
+api.update_status(quote)
