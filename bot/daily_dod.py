@@ -40,6 +40,6 @@ quote = quote.fetchone()
 quote = quote[0]
 conn.close()
 
-quote = f'Who said this shit - Dick Nixon or Don Trump? "{quote}"'
+quote = f'Who said this shit - Dick Nixon or Don Trump?\n\n"{quote}"'
 
 api.update_status(quote)
