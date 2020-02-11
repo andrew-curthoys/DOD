@@ -85,8 +85,14 @@ def index():
 
 @application.route("/form", methods=["GET"])
 def get_form():
+    # check if the session data is empty, initialize it if so
+    if session['quote_ids'] is None:
+        session['quote_ids'] = []
+
+    # get a quote
     quote_data = get_quote()
 
+    # parse quote data
     quote = quote_data[0]
     quote_id = quote_data[1]
     photo_id = quote_id % 15
