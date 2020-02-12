@@ -49,7 +49,7 @@ def get_quote():
     quote = quote[0]
     conn.close()
 
-    quote = f'Who the hell said this shit - Dick Nixon or Don Trump?\n\n"{quote}"'
+    quote = f'Who the hell said this shit -\nDick Nixon or Don Trump?\n\n"{quote}"'
     return quote
 
 
