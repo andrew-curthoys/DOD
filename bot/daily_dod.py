@@ -11,7 +11,7 @@ class Tweet:
         # create status for tweeting or testing
         # test = 'tweet' will send a tweet
         # test = 'test' will print contents to terminal
-        self.test = 'test'
+        self.test = 'tweet'
 
         # Connect to Twitter API
         auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
@@ -24,7 +24,7 @@ class Tweet:
         self.utterer = 0
 
         # Connect to SQLite database
-        self.conn = sqlite3.connect("../dick_or_don.db")
+        self.conn = sqlite3.connect("/home/andrew-curthoys/Documents/Projects/dickordon/DOD/dick_or_don.db")
         self.db = self.conn.cursor()
 
         # Create lists of variables to put in reply with answer to last tweet
