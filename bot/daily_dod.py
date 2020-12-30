@@ -2,6 +2,7 @@ import tweepy
 from keys import *
 import random
 import sqlite3
+from pathlib import Path
 from datetime import datetime
 import time
 
@@ -24,7 +25,8 @@ class Tweet:
         self.utterer = 0
 
         # Connect to SQLite database
-        self.conn = sqlite3.connect("/home/andrew-curthoys/Documents/Projects/dickordon/DOD/dick_or_don.db")
+        db_path = Path(__file__).resolve().parent.parent / 'dick_or_don.db'
+        self.conn = sqlite3.connect(db_path)
         self.db = self.conn.cursor()
 
         # Create lists of variables to put in reply with answer to last tweet
