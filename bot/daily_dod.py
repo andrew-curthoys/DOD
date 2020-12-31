@@ -3,6 +3,7 @@ from keys import *
 import random
 import sqlite3
 from pathlib import Path
+from glob import glob
 from datetime import datetime
 import time
 
@@ -77,16 +78,17 @@ class Tweet:
         don_name = self.don_names[don_name_no]
 
         # Get tweet text
+        image_dir = Path(__file__).resolve().parent / "images"
         if self.utterer == 0:
             tweet_list = [f"If you guessed {dick_name}, that's a bingo!! Well done!",
                           f"If you guessed {don_name}, that is incorrect. You should feel shame!"]
-            image_list = ["./images/nixon_fist.gif", "./images/nixon_shake_no.gif"]
+            image_list = glob(str(image_dir / 'nixon*'))
             self.answer_tweet = tweet_list[tweet_no]
             image = image_list[tweet_no]
         else:
             tweet_list = [f"If you guessed {dick_name}, you are WRONG. Sad!",
                           f"if you guessed {don_name}, you are the the smartest person alive. The best, there are none smarter than you."]
-            image_list = ["./images/don_wrong.gif", "./images/don_nod_yes.gif"]
+            image_list = glob(str(image_dir / 'don*'))
             self.answer_tweet = tweet_list[tweet_no]
             image = image_list[tweet_no]
 
